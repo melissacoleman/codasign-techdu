@@ -30,9 +30,9 @@
  
 #include <CapacitiveSensor.h>
 
-CapacitiveSensor   sensor1 = CapacitiveSensor(4,2);        // 1M resistor between pins 4 & 2, pin 2 is sensor pin
-CapacitiveSensor   sensor2 = CapacitiveSensor(4,6);        // 1M resistor between pins 4 & 6, pin 6 is sensor pin
-CapacitiveSensor   sensor3 = CapacitiveSensor(4,8);        // 1M resistor between pins 4 & 8, pin 8 is sensor pin
+CapacitiveSensor   sensor1 = CapacitiveSensor(2,4);        // 1M resistor between pins 2 & 4, pin 4 is receiving pin
+CapacitiveSensor   sensor2 = CapacitiveSensor(2,6);        // 1M resistor between pins 2 & 6, pin 6 is receiving pin
+CapacitiveSensor   sensor3 = CapacitiveSensor(2,8);        // 1M resistor between pins 2 & 8, pin 8 is receiving pin
 
 int minimumTouchValue = 600;
 int serialSpeed = 9600;
@@ -49,8 +49,8 @@ void setup()
 void loop()                    
 {
     checkSensor1();
-//    checkSensor2();
-//    checkSensor3();
+    checkSensor2();
+    checkSensor3();
     
     delay(1000);  // delay to limit the time between input sampling, and consequently samples
 }
