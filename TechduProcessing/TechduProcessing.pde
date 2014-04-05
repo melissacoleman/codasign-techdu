@@ -16,15 +16,10 @@ Serial myPort;
 Minim minim;
 
 AudioPlayer sample1;
-AudioPlayer sample2;
-AudioPlayer sample3;
-
 void setup () {
 
   minim = new Minim(this);
   sample1 = minim.loadFile("1.wav");
-  sample2 = minim.loadFile("2.wav");
-  sample3 = minim.loadFile("3.wav");
 
   for(int i=0; i<Serial.list().length; i++) {
     println(Serial.list()[i]);
@@ -50,15 +45,7 @@ void serialEvent (Serial myPort) {
       case 1: 
         sample1.rewind();
         sample1.play();
-        break;
-      case 2: 
-        sample2.rewind();
-        sample2.play();
-        break; 
-      case 3: 
-        sample3.rewind();
-        sample3.play();
-        break;      
+        break;   
     }
 
   }
