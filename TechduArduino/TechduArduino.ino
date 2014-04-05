@@ -12,7 +12,6 @@
  The technical term for this technology is: capacitive sensing.
  
  Use a 1M resistor between send pin (4) and receive pin(2). 
- Additional resistors can be placed between 4 and 6, and 4 and 8 to create 3 sensors.
  
  
  TURNING ON A LIGHT
@@ -31,8 +30,6 @@
 #include <CapacitiveSensor.h>
 
 CapacitiveSensor   sensor1 = CapacitiveSensor(2,4);        // 1M resistor between pins 2 & 4, pin 4 is receiving pin
-CapacitiveSensor   sensor2 = CapacitiveSensor(2,6);        // 1M resistor between pins 2 & 6, pin 6 is receiving pin
-CapacitiveSensor   sensor3 = CapacitiveSensor(2,8);        // 1M resistor between pins 2 & 8, pin 8 is receiving pin
 
 int minimumTouchValue = 600;
 int serialSpeed = 9600;
@@ -48,14 +45,11 @@ void setup()
 
 void loop()                    
 {
-    checkSensor1();
-    checkSensor2();
-    checkSensor3();
-    
+    checkSensor();
     delay(1000);  // delay to limit the time between input sampling, and consequently samples
 }
 
-void checkSensor1()
+void checkSensor()
 {
     long sensorVal =  sensor1.capacitiveSensor(numberOfTouchSamples);
     if(sensorVal > minimumTouchValue)
@@ -65,23 +59,5 @@ void checkSensor1()
         ledState = !ledState;
         digitalWrite(ledPin, ledState);
 
-    }
-}
-
-void checkSensor2()
-{
-    long sensorVal =  sensor2.capacitiveSensor(numberOfTouchSamples);    
-    if(sensorVal > minimumTouchValue)
-    {
-        Serial.println(2); // trigger sample 2 in Processing by sending 2 over the Serial port
-    }
-}
-
-void checkSensor3()
-{
-    long sensorVal =  sensor3.capacitiveSensor(numberOfTouchSamples);    
-    if(sensorVal > minimumTouchValue)
-    {
-        Serial.println(3); // trigger sample 3 in Processing by sending 3 over the Serial port
     }
 }
